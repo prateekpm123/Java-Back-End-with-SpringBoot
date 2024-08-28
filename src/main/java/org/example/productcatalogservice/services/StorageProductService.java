@@ -12,23 +12,21 @@ import java.util.Optional;
 @Service
 @Primary
 public class StorageProductService implements IProductService {
-
     @Autowired
-    private ProductRepo productRepo;
+    public ProductRepo productRepo;
 
     @Override
     public Product getProductById(Long id) {
-       Optional<Product> productOptional = productRepo.findById(id);
-       if(productOptional.isPresent()) {
-           return productOptional.get();
-       }
-
-       return null;
+        Optional<Product> result = productRepo.findById(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        return null;
     }
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        return List.of();
     }
 
     @Override

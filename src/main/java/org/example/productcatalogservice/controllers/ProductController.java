@@ -86,6 +86,7 @@ public class ProductController {
             Category category = new Category();
             category.setName(productDto.getCategory().getName());
             category.setId(productDto.getCategory().getId());
+            category.setDescription(productDto.getCategory().getDescription());
             product.setCategory(category);
         }
         return product;
