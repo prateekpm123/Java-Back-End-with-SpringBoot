@@ -19,9 +19,8 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Autowired
+    @Autowired // this replaces a constructor where we initialize the depedency normally.
     private IProductService productService;
-
 
 
     @GetMapping
@@ -41,6 +40,8 @@ public class ProductController {
             if(productId < 1) {
                 throw new IllegalArgumentException("Product not present");
             }
+            // This is just a dynamic map. Equivalent to Map in JS.
+            // The reason we have used MutliValueMap is the ResponseEntity Requires MultiValueMap as it's headers data type
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("called by", "smart frontend");
             Product product = productService.getProductById(productId);
@@ -64,6 +65,10 @@ public class ProductController {
 
     @PutMapping("{id}")
     public ProductDto replaceProduct(@PathVariable Long id,@RequestBody ProductDto productDto) {
+        // We are getting this ProductDto from our client
+        // Since we use Product everywhere internally, we have to convert ProductDto to Product
+        // Then we'll pass this Product to our ProductService class
+
         Product product = from(productDto);
         Product result = productService.replaceProduct(id,product);
         return from(result);

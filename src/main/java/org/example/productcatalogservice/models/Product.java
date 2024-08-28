@@ -21,7 +21,7 @@ public class Product extends BaseModel {
     private Double price;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Category category;
+    private Category category; // we are saying Many products can be mapped to on Category.
 
     //private Boolean isPrimeSpecific;
 }
