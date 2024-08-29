@@ -1,5 +1,6 @@
 package org.example.productcatalogservice.repositories;
 
+import org.example.productcatalogservice.models.Category;
 import org.example.productcatalogservice.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -70,5 +71,8 @@ This behavior is possible because of the following Spring mechanisms:
 
 Even though `ProductRepo` is just an interface, Spring Data JPA automatically provides the implementation at runtime. This allows you to work with your repository interface as if it were a fully implemented class, complete with all necessary CRUD and query methods.
      */
+
+    public Product findProductByPriceBetween(Double lower, Double higher);
+    public Category findCategoryById(Long id);
 
 }
